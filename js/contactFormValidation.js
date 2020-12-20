@@ -13,13 +13,13 @@ $('#contactFormSubmit').on('click', function(event) {
         updateSuccessPrompt(false);
     } else {
         updateSuccessPrompt(true);
-        // var post = $.ajax({
-        //     url: url,
-        //     method: "POST",
-        //     dataType: "json",
-        //     data: $form.serializeObject(),
-        //     success: updateSuccessPrompt(true)
-        // });
+        var post = $.ajax({
+            url: url,
+            method: "POST",
+            dataType: "json",
+            data: $form.serializeObject(),
+            success: updateSuccessPrompt(true)
+        });
     }
     $form.addClass('was-validated');
 })
