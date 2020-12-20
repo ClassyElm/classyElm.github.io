@@ -1,3 +1,7 @@
 body {
     background-color: #001A2D;
 }
+
+.required {
+    color: #7F0000;
+}
