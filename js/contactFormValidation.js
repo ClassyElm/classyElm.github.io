@@ -12,13 +12,14 @@ $('#contactFormSubmit').on('click', function(event) {
         event.stopPropagation();
         updateSuccessPrompt(false);
     } else {
-        var post = $.ajax({
-            url: url,
-            method: "POST",
-            dataType: "json",
-            data: $form.serializeObject(),
-            success: updateSuccessPrompt(true)
-        });
+        updateSuccessPrompt(true);
+        // var post = $.ajax({
+        //     url: url,
+        //     method: "POST",
+        //     dataType: "json",
+        //     data: $form.serializeObject(),
+        //     success: updateSuccessPrompt(true)
+        // });
     }
     $form.addClass('was-validated');
 })
