@@ -13,9 +13,9 @@ $('#contactFormSubmit').on('click', function(event) {
         updateSuccessPrompt(false);
     } else {
         updateSuccessPrompt(true);
-        var post = $.ajax({
+        var get = $.ajax({
             url: url,
-            method: "POST",
+            method: "GET",
             dataType: "json",
             data: $form.serializeObject(),
             success: updateSuccessPrompt(true)
