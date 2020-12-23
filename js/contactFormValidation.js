@@ -1,5 +1,5 @@
 var $form = $('form#contactForm'),
-    url = 'https://script.google.com/macros/s/AKfycbyf58bjk-hyTiV42zCzkfqeJ1szU2V6eKCwem7wF-ofUEqnVpk/exec'
+    url = 'https://script.google.com/macros/s/AKfycbx7ZXEL0vdo14JurgA3dR0meo-w11-6NhW58FP0L_ThIcf7ImWNofUv/exec'
 
 $("#contactForm").validate({
     errorPlacement: function(error, element) {}
