@@ -1,29 +1,47 @@
+/*
+    This function selects the first div element with the attribute data-include-html and sends a GET request for the specified file.
+*/
 const includeHTML = () => {
-  var z, i, elmnt, file, xhttp;
-  /*loop through a collection of all HTML elements:*/
-  z = document.getElementsByTagName("*");
-  for (i = 0; i < z.length; i++) {
-    elmnt = z[i];
-    /*search for elements with a certain atrribute:*/
-    file = elmnt.getAttribute("data-include-html");
-    if (file) {
-      /*make an HTTP request using the attribute value as the file name:*/
-      xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4) {
-          if (this.status == 200) {elmnt.innerHTML = this.responseText;}
-          if (this.status == 404) {elmnt.innerHTML = "Page not found.";}
-          /*remove the attribute, and call this function once more:*/
-          elmnt.removeAttribute("data-include-html");
-          includeHTML();
+    let element, file, xhr;
+    element = document.querySelector("div[data-include-html]");
+
+    // Verify that an element exists for including HTML pages
+    if (element) {
+        // Retrieve file name to include from element
+        file = element.getAttribute("data-include-html");
+        if (file) {
+            // Request for the file if it exists
+            xhr = new XMLHttpRequest();
+
+            xhr.addEventListener("load", loadedFile);
+
+            // Assign properties to access after loading the file
+            xhr.file = file;
+            xhr.targetElement = element;
+            xhr.open("GET", file);
+            xhr.send();
         }
-      }
-      xhttp.open("GET", file, true);
-      xhttp.send();
-      /*exit the function:*/
-      return;
     }
-  }
-};
+}
+
+/*
+    This function is called when a response comes back from attempting to load a specified file from the web server.
+    Once complete, the includeHTML function is called once again for the next HTML file to be included.
+*/
+const loadedFile = event => {
+    let xhr = event.target;
+    let status = xhr.status;
+    let file = xhr.file;
+    let element = xhr.targetElement;
+
+    // Check the status of the HTML file GET request
+    if (status == 200) {
+        element.innerHTML = xhr.responseText;
+    } else if (status == 404) {
+        console.error("File not found: '" + file + "'");
+    }
+    element.removeAttribute("data-include-html");
+    includeHTML();
+}
 
 window.addEventListener("load", includeHTML);
