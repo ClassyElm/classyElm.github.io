@@ -2,6 +2,10 @@ body {
     background-color: #001A2D;
 }
 
+.bg-gray {
+    background-color: #C1C1C1;
+}
+
 .required {
     color: #7F0000;
 }
