@@ -2,6 +2,22 @@ body {
     background-color: #141719;
 }
 
+a {
+    color: #006CE0 !important;
+}
+
+a:hover {
+    color: #0055AF !important;
+}
+
+.btn-primary {
+    background-color: #006CE0 !important;
+}
+
+.btn-primary:hover {
+    background-color: #0055AF !important;
+}
+
 .bg-gray {
     background-color: #C1C1C1 !important;
 }
